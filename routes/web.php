@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $start = Carbon::now();
+    $end   = Carbon::today()->addYear(1);
+
+    // do {
+    //     $months[$start->format('d-m-Y')] = $start->format('D F Y');
+    // } while ($start->addMonth() <= $end);
+
+    return $start->lastOfMonth()->isWeekday();
 });
