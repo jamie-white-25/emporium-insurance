@@ -6,12 +6,10 @@ use Carbon\Carbon;
 
 class FormatMonths
 {
-    static public function months(String $date = Null)
+    static public function months()
     {
         $months = collect();
-        $start = $date !== Null
-            ? Carbon::parse(strtotime($date))
-            : Carbon::now();
+        $start = Carbon::now();
         $end = Carbon::today()->addYear(1);
 
         do {

@@ -39,12 +39,7 @@ class MakeCsv extends Command
      */
     public function handle()
     {
-        $month = $this->ask('Enter the payment month');
-        $year = $this->ask('Enter the payment year');
-        $date = Carbon::parse(strtotime($month .'-'. $year));
-
-        MakeCsvController::make($date);
-
-        return 0;
+        MakeCsvController::make();
+        return $this->info('The Csv has been made');;
     }
 }
