@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\MakeCsvController;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class MakeCsv extends Command
@@ -37,7 +39,11 @@ class MakeCsv extends Command
      */
     public function handle()
     {
-        $this->info('this ran');
+        $month = $this->ask('Enter the payment month');
+        $year = $this->ask('Enter the payment year');
+        $date = Carbon::parse(strtotime($month .'-'. $year));
+
+        MakeCsvController::make($date);
 
         return 0;
     }

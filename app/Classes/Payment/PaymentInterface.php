@@ -2,6 +2,7 @@
 
 namespace App\Classes\Payment;
 
-interface PaymentInterface{
+interface PaymentInterface
+{
     public function payment_date($dates);
 }

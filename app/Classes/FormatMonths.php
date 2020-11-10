@@ -3,17 +3,19 @@
 namespace App\Classes;
 
 use Carbon\Carbon;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class FormatMonths
 {
-    static public function months(Data $data = null)
+    static public function months(String $date = Null)
     {
-        $start = Carbon::now();
-        $end   = Carbon::today()->addYear(1);
+        $months = collect();
+        $start = $date !== Null
+            ? Carbon::parse(strtotime($date))
+            : Carbon::now();
+        $end = Carbon::today()->addYear(1);
 
         do {
-            $months[$start->format('d-m-Y')] = $start->format('D F Y');
+            $months[] = $start->format('M-y');
         } while ($start->addMonth() <= $end);
 
         return $months;
